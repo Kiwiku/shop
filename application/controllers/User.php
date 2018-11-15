@@ -6,7 +6,8 @@ class User extends CI_Controller {
     }
     function index(){
         echo "<a href='./index.php/user/loadLogin'>Login</a> <br>";
-        echo "<a href='./index.php/user/loadRegister'>register</a>";
+        echo "<a href='./index.php/user/loadRegister'>register</a><br>";
+        echo "<a href='./index.php/products'>Produkty</a>";
     }
     function loadRegister(){
         $this->load->view("registerform");
