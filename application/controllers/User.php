@@ -5,25 +5,25 @@ class User extends CI_Controller {
         parent::__construct();
     }
     function index(){
-        echo "<a href='./index.php/user/loadLogin'>Login</a> <br>";
-        echo "<a href='./index.php/user/loadRegister'>register</a><br>";
-        echo "<a href='./index.php/products'>Produkty</a>";
+        $this->load->helper("url");
+        echo "<a href=".site_url()."/user/loadRegister>Register</a><br>";
+        echo "<a href=".site_url()."/user/loadLogin>Login</a><br>";
+        echo "<a href=".site_url()."/products>Products</a>";
     }
     function loadRegister(){
         $this->load->view("registerform");
     }
     function register(){
-        $this->load->model("Model");
-        $this->Model->register($this->input->post());
+        $this->load->model("UserModel");
+        $this->UserModel->register($this->input->post());
     }
     function loadLogin(){
         $this->load->view("loginform");
     }
     function login(){
-        $this->load->library("session");
-        $this->load->model("Model");
+        $this->load->model("UserModel");
         $post = $this->input->post();
-        $data = $this->Model->loadData($post);
+        $data = $this->UserModel->loadData($post);
         if($data->num_rows()==1){
             $username = $post['login'];
             $_SESSION['login'] = $username;

@@ -1,6 +1,6 @@
 <?php
 
-class Model extends CI_Model {
+class UserModel extends CI_Model {
     public function __construct() {
         parent::__construct();
         $config['hostname'] = 'localhost';
@@ -19,13 +19,18 @@ class Model extends CI_Model {
     }
     
     public function register($data){
-        print_r($data);
+        $querycheck = $this->db->query("SELECT login FROM user WHERE login='$data[login]'");
         $query = "INSERT INTO `user`(`user_id`, `login`, `password`, `address`) VALUES (NULL, '$data[login]', '$data[password]', '$data[address]')";
-        print_r($query);
-        $this->db->query($query);
+        if($querycheck->num_rows()==0){
+            $this->db->query($query);
+        }
+        else{
+            echo "this user already exists";
+        }
     }
+    
     public function loadData($data){
-        $query = "SELECT login, address FROM user WHERE login='$data[login]'";
+        $query = "SELECT login, address FROM user WHERE login='$data[login]' AND password='$data[password]'";
         $data = $this->db->query($query);
         return $data;
     }

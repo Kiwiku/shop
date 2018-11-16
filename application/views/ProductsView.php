@@ -1,12 +1,9 @@
 <?php
 echo "<table>";
-foreach($wszystkie as $value1){
+foreach($wszystkie as $v){
     echo "<tr>";
-    foreach($value1 as $value2){
-        echo "<td>";
-        echo $value2 . "<br>";
-        echo "</td>";
-    }
+        echo "<td>$v->name</td>";
+        echo "<td>$v->price</td>";
     echo "</tr>";
 }
 echo "</table>";
