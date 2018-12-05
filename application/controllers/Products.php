@@ -5,6 +5,6 @@ class Products extends CI_Controller{
         $this->load->model("ProductsModel");
         $data['wszystkie'] = $this->ProductsModel->displayProducts();
         $data['link'] = "<a href='user'>Main page</a>";
-        $this->load->view("MainView", $data);
+        $this->load->view("ProductsView", $data);
     }
 }
